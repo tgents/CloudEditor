@@ -1,13 +1,16 @@
 document.addEventListener("DOMContentLoaded", function() {
+  var htmlValue = "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head>\n\t</head>"
   var myCodeMirror = CodeMirror(document.body, {
-    value: "function myScript(){return 100;}\n",
-    mode:  "javascript"
+    //value: "function myScript(){return 100;}\n",
+    value: htmlValue,
+    mode:  "html",
+    lineNumbers: true
   });
 
-  var editor = CodeMirror.fromTextArea(document.getElementById("demotext"), {
-    lineNumbers: true,
-    mode: "text/htmlmixed",
-    matchBrackets: true
-  });
+  //var editor = CodeMirror.fromTextArea(document.getElementById("editorTextArea"), {
+  //  lineNumbers: true,
+  //  mode: "text/htmlmixed",
+  //  matchBrackets: true
+  //});
 });
 
