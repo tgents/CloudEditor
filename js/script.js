@@ -1,17 +1,28 @@
 document.addEventListener("DOMContentLoaded", function() {
-  var htmlValue = "<!DOCTYPE html>\n<html lang=\"en\">\n\t<head>\n\t</head>"
-  var myCodeMirror = CodeMirror(document.body, {
-    //value: "function myScript(){return 100;}\n",
-    value: htmlValue,
-    mode:  "html",
-    readOnly: true,
-    lineNumbers: true
+  "use strict"
+  var textEditor = document.getElementById("fill");
+  var value = "Type your code here";
+  //showEditor(textEditor, value);
+
+  requirejs([
+    "codemirror/lib/codemirror", "codemirror/mode/htmlmixed/htmlmixed"
+  ], function(CodeMirror) {
+    CodeMirror.fromTextArea(textEditor, {
+      lineNumbers: true,
+      mode: "htmlmixed",
+      value: value
+    });
   });
 
-  //var editor = CodeMirror.fromTextArea(document.getElementById("editorTextArea"), {
-  //  lineNumbers: true,
-  //  mode: "text/htmlmixed",
-  //  matchBrackets: true
-  //});
 });
 
+
+function showEditor(divId, value) {
+  CodeMirror(divId, {
+    //value: "function myScript(){return 100;}\n",
+    value: value,
+    mode:  "text/html",
+    readOnly: false,
+    lineNumbers: true
+  });
+}
