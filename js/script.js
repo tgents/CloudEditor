@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //value: "function myScript(){return 100;}\n",
     value: htmlValue,
     mode:  "html",
+    readOnly: true,
     lineNumbers: true
   });
 
