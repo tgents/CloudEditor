@@ -4,14 +4,21 @@ document.addEventListener("DOMContentLoaded", function() {
 	var div = document.getElementById('fill');
 	div.innerHTML = "hello";
 	addFile("greatCode", "html");
+	addFile("greatCode1", "html");
+	addFile("greatCode2", "html");
+	addFile("greatCode3", "html");
+	addFile("greatCode4", "html");
 	console.log(getFiles());
 
 });
 
 function getFiles(){
+	var files;
 	myFirebaseRef.on("value", function(snapshot) {
-	  return snapshot.val();
+	  console.log(snapshot.val());
+	  files = snapshot.val();
 	});
+	return files;
 }
 
 function addFile(fileName, lang){

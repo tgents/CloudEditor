@@ -16,3 +16,17 @@ body {
     padding: 1em;
     font-weight: 300;
 }
+.add {
+  padding: 0;
+  text-align: center;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  padding: 10px;
+}
+.add:active {
+  top: 1px;
+  outline: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
