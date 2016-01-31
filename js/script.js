@@ -1,3 +1,5 @@
+"use strict"
+
 var myFirebaseRef = new Firebase("https://winfoapp.firebaseio.com/");
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -10,7 +12,41 @@ document.addEventListener("DOMContentLoaded", function() {
 	addFile("greatCode4", "html");
 	console.log(getFiles());
 
+	//div.innerHTML = "hello";
+ 	//addFile("greatCode", "html");
+ 	//console.log(getFiles());
+
+  var value = "Type your code here";
+  //showEditor(textEditor, value);
+  //requirejs(["helper/util"], function(util) {
+  //  //This function is called when scripts/helper/util.js is loaded.
+  //  //If util.js calls define(), then this function is not fired until
+  //  //util's dependencies have loaded, and the util argument will hold
+  //  //the module value for "helper/util".
+  //});
+
+  //requirejs([
+  //  "codemirror/lib/codemirror", "codemirror/mode/htmlmixed/htmlmixed"
+  //], function(CodeMirror) {
+  //  CodeMirror.fromTextArea(textEditor, {
+  //    lineNumbers: true,
+  //    mode: "htmlmixed",
+  //    value: value
+  //  });
+  //});
+  showEditor(div, value);
 });
+
+function showEditor(divId, value) {
+  CodeMirror(divId, {
+    //value: "function myScript(){return 100;}\n",
+    value: value,
+    mode:  "text/html",
+    readOnly: false,
+    lineNumbers: true
+  });
+}
+
 
 function getFiles(){
 	var files;
