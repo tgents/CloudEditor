@@ -30,3 +30,11 @@ body {
   -webkit-box-shadow: none;
   box-shadow: none;
 }
+
+#save{
+	visibility: hidden;
+}
+
+#back{
+	visibility: hidden;
+}
