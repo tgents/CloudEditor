@@ -10,11 +10,11 @@ document.addEventListener("DOMContentLoaded", function() {
 	addFile("greatCode2", "html");
 	addFile("greatCode3", "html");
 	addFile("greatCode4", "html");
-	console.log(getFiles());
+	//console.log(getFiles());
 
 	//div.innerHTML = "hello";
  	//addFile("greatCode", "html");
- 	//console.log(getFiles());
+ 	getFiles();
 
   var value = "Type your code here";
   //showEditor(textEditor, value);
@@ -34,12 +34,12 @@ document.addEventListener("DOMContentLoaded", function() {
   //    value: value
   //  });
   //});
-  showEditor(div, value);
+  //showEditor(div, value);
 });
 
-function showEditor(divId, value) {
-  CodeMirror(divId, {
-    //value: "function myScript(){return 100;}\n",
+function showEditor(name, lang, value) {
+	console.log("boo");
+  CodeMirror(document.getElementById('fill'), {
     value: value,
     mode:  "text/html",
     readOnly: false,
@@ -49,12 +49,15 @@ function showEditor(divId, value) {
 
 
 function getFiles(){
-	var files;
 	myFirebaseRef.on("value", function(snapshot) {
-	  console.log(snapshot.val());
-	  files = snapshot.val();
+	  loadFiles(snapshot.val());
 	});
-	return files;
+}
+
+function updateFile(code){
+	myFirebaseRef.child(fileName).update({
+		content: code
+	});
 }
 
 function addFile(fileName, lang){
@@ -65,17 +68,22 @@ function addFile(fileName, lang){
 	});
 }
 
-function loadFiles(){
-	// var i=0;
- //    var grid = document.createElement('table');
- //    grid.className = 'grid';
- //    for (var r=0;r<rows;++r){
- //        var tr = grid.appendChild(document.createElement('tr'));
- //        for (var c=0;c<cols;++c){
- //            var cell = tr.appendChild(document.createElement('td'));
- //            cell.innerHTML = ++i;
- //        }
- //    }
- //    return grid;
+function loadFiles(files){
+	console.log(typeof files);
+	var list = document.createElement('ul');
+	list.className = 'files';
+	var keys = Object.keys(files);
+	console.log(files[keys[0]]);
+	for (var i = 0; i < keys.length; i++){
+		console.log();
+		var text = keys[i] +"."+ files[keys[i]].language;
+		var item = document.createElement('li');
+		item.appendChild(document.createTextNode(text));
+		item.style.padding = "10px";
+		item.addEventListener("click", (showEditor(keys[i], files[keys[i]].language, files[keys[i]].content)), false);
+		list.appendChild(item);
+	}
+	document.getElementById('fill').innerHTML = "";
+	document.getElementById('fill').appendChild(list);
 }
 
